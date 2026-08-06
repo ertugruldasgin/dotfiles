@@ -1,0 +1,18 @@
+font-family = JetBrainsMono Nerd Font
+font-size = 13
+font-feature = -calt
+
+theme = Cobalt Next Minimal
+
+window-width = 120
+window-height = 30
+window-padding-x = 8
+window-padding-y = 6
+
+scrollback-limit = 20000000
+copy-on-select = clipboard
+mouse-hide-while-typing = true
+
+unfocused-split-opacity = 0.7
+
+keybind = shift+enter=text:\x1b\r
