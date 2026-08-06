@@ -4,21 +4,98 @@
 HISTFILE=~/.local/share/zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
-setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE HIST_VERIFY
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_VERIFY
 
-setopt AUTO_CD EXTENDED_GLOB INTERACTIVE_COMMENTS NO_BEEP
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+setopt EXTENDED_GLOB
+setopt INTERACTIVE_COMMENTS
+setopt NO_BEEP
+setopt LONG_LIST_JOBS
+setopt NOTIFY
 
-autoload -Uz compinit && compinit
+setopt ALWAYS_TO_END
+setopt AUTO_MENU
+setopt COMPLETE_IN_WORD
+setopt AUTO_PARAM_SLASH
+setopt PATH_DIRS
+
+ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+mkdir -p "$ZSH_CACHE_DIR"
+
+autoload -Uz compinit && compinit -d "$ZSH_CACHE_DIR/zcompdump"
+
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{green}-- %d --%f'
+zstyle ':completion:*:warnings'     format '%F{red}no matches: %d%f'
+zstyle ':completion:*:*:*:*:processes' command 'ps -u $USER -o pid,cmd -w'
+zstyle ':completion:complete:*:options' sort false
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path "$ZSH_CACHE_DIR"
+[ -n "$LS_COLORS" ] && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 bindkey -e
-bindkey '^[[A' history-beginning-search-backward
-bindkey '^[[B' history-beginning-search-forward
+
+autoload -Uz select-word-style && select-word-style bash
+
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
+autoload -Uz url-quote-magic bracketed-paste-magic
+zle -N self-insert url-quote-magic
+zle -N bracketed-paste bracketed-paste-magic
+
+command -v eza >/dev/null && {
+  alias ls='eza --group-directories-first'
+  alias ll='eza -lh --git --group-directories-first'
+  alias la='eza -lah --git --group-directories-first'
+  alias lt='eza --tree --level=2'
+}
+command -v bat >/dev/null && {
+  alias cat='bat -pp'
+  export BAT_PAGER='less -RF'
+}
+command -v fd >/dev/null || alias fd='fdfind'
+
+command -v fzf >/dev/null && {
+  source <(fzf --zsh)
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+  export FZF_CTRL_T_OPTS='--preview "bat -n --color=always {} 2>/dev/null"'
+}
+
+[ -f ~/.local/share/zsh/fzf-tab/fzf-tab.plugin.zsh ] && {
+  source ~/.local/share/zsh/fzf-tab/fzf-tab.plugin.zsh
+  zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+  zstyle ':fzf-tab:complete:*:*'  fzf-preview 'bat -n --color=always $realpath 2>/dev/null || eza -1 --color=always $realpath'
+  zstyle ':fzf-tab:*' switch-group ',' '.'
+}
 
 [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
   . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
   . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+command -v zoxide   >/dev/null && eval "$(zoxide init zsh --cmd cd)"
 command -v starship >/dev/null && eval "$(starship init zsh)"
