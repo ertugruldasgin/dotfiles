@@ -1,0 +1,24 @@
+[ -f ~/.config/shell/env ]     && . ~/.config/shell/env
+[ -f ~/.config/shell/aliases ] && . ~/.config/shell/aliases
+
+HISTFILE=~/.local/share/zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE HIST_VERIFY
+
+setopt AUTO_CD EXTENDED_GLOB INTERACTIVE_COMMENTS NO_BEEP
+
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+bindkey -e
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
+
+[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
+  . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
+  . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+command -v starship >/dev/null && eval "$(starship init zsh)"
