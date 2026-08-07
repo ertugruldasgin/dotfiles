@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p ~/.local/share/vim/undo ~/.local/share/vim/swap ~/.local/share/zsh
+
+command -v dnf >/dev/null || exit 0
+
+if ! sudo -n true 2>/dev/null; then
+    echo "skipping package install, run 'sudo -v' and apply again" >&2
+    exit 1
+fi
+
+packages=$(cat <<'PKGEOF' | grep -vE '^\s*(#|$)'
+{{ include "packages/dnf.txt" }}
+PKGEOF
+)
+
+sudo dnf install -y --skip-unavailable $packages
+

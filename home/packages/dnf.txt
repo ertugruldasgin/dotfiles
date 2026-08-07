@@ -1,0 +1,17 @@
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
+git
+git-delta
+gh
+vim-enhanced
+tmux
+fzf
+ripgrep
+fd-find
+bat
+eza
+zoxide
+wl-clipboard
+ncdu
+
