@@ -1,0 +1,103 @@
+[user]
+    name = Umut Ertuğrul Daşgın
+    email = {{ .email }}
+
+[init]
+    defaultBranch = main
+
+[core]
+    editor = vim
+    excludesfile = ~/.config/git/ignore
+
+[help]
+    autoCorrect = prompt
+
+[pull]
+    rebase = true
+[push]
+    autoSetupRemote = true
+    followTags = true
+[fetch]
+    prune = true
+    pruneTags = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = default
+    mnemonicPrefix = true
+    renames = true
+[merge]
+    conflictstyle = zdiff3
+
+[rerere]
+    enabled = true
+    autoUpdate = true
+
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+
+[alias]
+    s = status -sb
+    st = status --short
+    l = log --oneline --graph --decorate -20
+    ll = log --oneline --graph --decorate --all
+    lg = log --oneline --graph --abbrev-commit --date=relative
+    co = checkout
+    sw = switch
+    br = branch -v
+    cm = commit -m
+    ca = commit --amend --no-edit
+    di = diff
+    dis = diff --staged
+    rs = restore
+    rss = restore --staged
+    sh = stash
+    unstage = restore --staged
+    last = show --stat HEAD
+    root = rev-parse --show-toplevel
+
+{{ if lookPath "delta" -}}
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    features = side-by-side unobtrusive-line-numbers decorations
+    navigate = true
+    syntax-theme = Nord
+    whitespace-error-style = 22 reverse
+    plus-style = "syntax #003800"
+    minus-style = "syntax #3f0001"
+[delta "unobtrusive-line-numbers"]
+    line-numbers = true
+    line-numbers-minus-style = "#444444"
+    line-numbers-zero-style = "#444444"
+    line-numbers-plus-style = "#444444"
+    line-numbers-left-format = "{nm:>4}┊"
+    line-numbers-right-format = "{np:>4}│"
+    line-numbers-left-style = blue
+    line-numbers-right-style = blue
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+    hunk-header-decoration-style = yellow box
+{{ end -}}
+
+{{ if lookPath "gh" -}}
+[credential "https://github.com"]
+    helper =
+    helper = !{{ lookPath "gh" }} auth git-credential
+[credential "https://gist.github.com"]
+    helper =
+    helper = !{{ lookPath "gh" }} auth git-credential
+{{ end -}}
