@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p ~/.local/share/vim/undo ~/.local/share/vim/swap ~/.local/share/zsh
+
+if command -v brew >/dev/null; then
+    brew bundle --file=- <<'BREWEOF'
+{{ include "packages/Brewfile" }}
+BREWEOF
+    exit 0
+fi
+
+command -v dnf >/dev/null || exit 0
+
+if ! sudo -n true 2>/dev/null; then
+    echo "skipping package install, run 'sudo -v' and apply again" >&2
+    exit 1
+fi
+...
