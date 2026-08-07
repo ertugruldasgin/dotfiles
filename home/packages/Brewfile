@@ -1,0 +1,37 @@
+# shell
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+brew "starship"
+
+# gnu tools 
+brew "coreutils"
+brew "gnu-sed"
+brew "findutils"
+
+# git
+brew "git"
+brew "git-delta"
+brew "gh"
+
+# terminal
+brew "tmux"
+brew "fzf"
+brew "ripgrep"
+brew "fd"
+brew "bat"
+brew "eza"
+brew "zoxide"
+brew "jq"
+brew "ncdu"
+brew "wget"
+brew "vim"
+
+# build & language
+brew "go"
+brew "cmake"
+brew "make"
+brew "gcc"
+
+cask "ghostty"
+cask "visual-studio-code"
+cask "font-jetbrains-mono-nerd-font"
