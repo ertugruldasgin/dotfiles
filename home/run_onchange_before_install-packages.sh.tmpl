@@ -17,3 +17,18 @@ PKGEOF
 
 sudo dnf install -y --skip-unavailable $packages
 
+if ! command -v starship >/dev/null; then
+    curl -sS https://starship.rs/install.sh | sh -s -- -y
+fi
+
+FONT_DIR="$HOME/.local/share/fonts/JetBrainsMono"
+if [ ! -d "$FONT_DIR" ]; then
+    command -v unzip >/dev/null || sudo dnf install -y unzip
+    mkdir -p "$FONT_DIR"
+    curl -fLo /tmp/jbm.zip \
+      https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+    unzip -oq /tmp/jbm.zip -d "$FONT_DIR"
+    rm -f /tmp/jbm.zip
+    fc-cache -f "$FONT_DIR"
+fi
+
