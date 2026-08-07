@@ -1,6 +1,6 @@
 # dotfiles
 
-## Bootstrap — macOS
+## macOS
 
 ```sh
 xcode-select --install
@@ -18,7 +18,7 @@ gh auth login
 chezmoi apply -v
 ```
 
-## Bootstrap — Fedora
+## Fedora
 
 ```sh
 sudo dnf install -y chezmoi
@@ -32,4 +32,3 @@ exec zsh
 gh auth login
 chezmoi apply -v
 ```
-
