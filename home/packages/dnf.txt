@@ -1,10 +1,7 @@
+# core
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
-git
-git-delta
-gh
-vim-enhanced
 tmux
 fzf
 ripgrep
@@ -12,6 +9,30 @@ fd-find
 bat
 eza
 zoxide
-wl-clipboard
 ncdu
+wl-clipboard
 
+# editor & git
+vim-enhanced
+git
+git-delta
+gh
+
+# build & language
+golang
+pkgconf
+
+gcc
+gcc-c++
+make
+gdb
+
+python3
+python3-pip
+
+# misc useful
+curl
+wget
+jq
+w3m
+htop

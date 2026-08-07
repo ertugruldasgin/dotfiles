@@ -7,8 +7,19 @@ alias pg='ps ax | grep -v grep | grep'
 alias ping='ping -c 3'
 alias j='jobs'
 alias cl='clear'
+alias vim='vimx'
 alias -g V='| vim -R -c "set buftype=nofile bufhidden=wipe noswapfile" -c "nnoremap q :qa!<CR>" -'
-alias -g F='| fzf --preview "bat -n --color=always {} 2>/dev/null || eza -1 --color=always {}"'i
+alias -g F='| fzf --preview "bat -n --color=always {} 2>/dev/null || eza -1 --color=always {}"'
+alias -g L='| less'
+
+# package management
+alias dnfi='sudo dnf install'
+alias dnfs='dnf search'
+alias dnfu='sudo dnf upgrade --refresh'
+alias dnfr='sudo dnf remove'
+
+alias fpi='flatpak install flathub'
+alias fpu='flatpak update'
 
 # docker
 alias d=docker
