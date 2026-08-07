@@ -1,0 +1,64 @@
+set nocompatible
+syntax on
+filetype plugin indent on
+
+set background=dark
+" set termguicolors  " KAPALI — terminalin Nord paletini kullansın
+
+set number
+set relativenumber
+set cursorline
+set cursorlineopt=number
+set showcmd
+set laststatus=2
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set smartindent
+
+set backspace=indent,eol,start
+set hidden
+set scrolloff=5
+set sidescrolloff=8
+set wildmenu
+set wildmode=longest:full,full
+set mouse=a
+set clipboard=unnamedplus
+set ttyfast
+set lazyredraw
+
+set undofile
+set undodir=~/.local/share/vim/undo
+set directory=~/.local/share/vim/swap
+set nobackup nowritebackup
+
+let mapleader=" "
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <silent> <leader>h :nohlsearch<CR>
+
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+highlight clear SignColumn
+highlight LineNr       ctermfg=8
+highlight CursorLineNr ctermfg=3  cterm=bold
+highlight CursorLine   cterm=NONE ctermbg=NONE
+highlight Comment      ctermfg=8
+highlight Search       ctermfg=0  ctermbg=3
+highlight IncSearch    ctermfg=0  ctermbg=1
+highlight MatchParen   ctermfg=NONE ctermbg=8
+highlight Visual       ctermbg=8
+highlight Pmenu        ctermfg=7  ctermbg=8
+highlight PmenuSel     ctermfg=0  ctermbg=4
+highlight VertSplit    ctermfg=8  ctermbg=NONE
+highlight StatusLine   ctermfg=7  ctermbg=8  cterm=NONE
+highlight StatusLineNC ctermfg=8  ctermbg=0  cterm=NONE
+
