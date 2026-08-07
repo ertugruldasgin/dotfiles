@@ -1,3 +1,11 @@
+{{ if eq .chezmoi.os "darwin" -}}
+if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+{{ end -}}
+
 [ -f ~/.config/shell/env ]     && . ~/.config/shell/env
 [ -f ~/.config/shell/aliases ] && . ~/.config/shell/aliases
 
@@ -93,10 +101,16 @@ command -v fzf >/dev/null && {
   zstyle ':fzf-tab:*' switch-group ',' '.'
 }
 
-[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && \
-  . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
-  . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{ if eq .chezmoi.os "darwin" -}}
+ZSH_PLUGIN_DIR="$(brew --prefix 2>/dev/null)/share"
+{{ else -}}
+ZSH_PLUGIN_DIR=/usr/share
+{{ end -}}
+[ -f "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && \
+  . "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[ -f "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
+  . "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+unset ZSH_PLUGIN_DIR
 
 command -v zoxide   >/dev/null && eval "$(zoxide init zsh --cmd cd)"
 command -v starship >/dev/null && eval "$(starship init zsh)"
