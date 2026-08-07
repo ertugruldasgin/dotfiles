@@ -7,6 +7,8 @@ alias pg='ps ax | grep -v grep | grep'
 alias ping='ping -c 3'
 alias j='jobs'
 alias cl='clear'
+alias -g V='| vim -R -c "set buftype=nofile bufhidden=wipe noswapfile" -c "nnoremap q :qa!<CR>" -'
+alias -g F='| fzf --preview "bat -n --color=always {} 2>/dev/null || eza -1 --color=always {}"'i
 
 # docker
 alias d=docker
