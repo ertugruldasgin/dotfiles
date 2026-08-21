@@ -4,6 +4,8 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", ":Lex<CR>")
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
 
 vim.keymap.set("n", "<C-Left>", "<C-w><")
 vim.keymap.set("n", "<C-Right>", "<C-w>>")
@@ -35,3 +37,12 @@ vim.keymap.set("n", "<leader>tt", function()
 end)
 vim.keymap.set("n", "<leader>tv", ":vsplit | terminal<CR>i")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
+-- override netrw <C-l> <C-h>
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "netrw",
+	callback = function()
+		vim.keymap.set("n", "<C-l>", "<C-w>l", { buffer = true, remap = false })
+		vim.keymap.set("n", "<C-h>", "<C-w>h", { buffer = true, remap = false })
+	end,
+})
