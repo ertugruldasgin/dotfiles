@@ -35,3 +35,6 @@ brew "gcc"
 cask "ghostty"
 cask "visual-studio-code"
 cask "font-jetbrains-mono-nerd-font"
+
+# nvim
+brew "tree-sitter-cli"
