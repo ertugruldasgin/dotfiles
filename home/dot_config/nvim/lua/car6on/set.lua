@@ -33,7 +33,7 @@ vim.opt.updatetime = 50
 vim.opt.shortmess:append("I")
 
 vim.g.netrw_liststyle = 3
-vim.g.netrw_winsize = 25
+vim.g.netrw_winsize = 15
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
