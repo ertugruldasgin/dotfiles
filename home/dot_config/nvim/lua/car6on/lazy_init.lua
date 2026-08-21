@@ -10,7 +10,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  spec = "car6on.lazy",
+  spec = { { import = "car6on.lazy" } },
   change_detection = { notify = false },
 })
 
