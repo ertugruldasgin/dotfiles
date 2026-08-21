@@ -1,0 +1,52 @@
+{
+  "error check": {
+    "prefix": "errn",
+    "body": ["if err != nil {", "\treturn ${1:err}", "}", "$0"]
+  },
+  "error check with wrap": {
+    "prefix": "errw",
+    "body": [
+      "if err != nil {",
+      "\treturn fmt.Errorf(\"${1:context}: %w\", err)",
+      "}",
+      "$0"
+    ]
+  },
+  "assign and check": {
+    "prefix": "ec",
+    "body": [
+      "${1:val}, err := ${2:call}",
+      "if err != nil {",
+      "\treturn ${3:err}",
+      "}",
+      "$0"
+    ]
+  },
+  "http handler": {
+    "prefix": "hf",
+    "body": [
+      "func ${1:handler}(w http.ResponseWriter, r *http.Request) {",
+      "\t$0",
+      "}"
+    ]
+  },
+  "table test": {
+    "prefix": "tt",
+    "body": [
+      "func Test${1:Name}(t *testing.T) {",
+      "\ttests := []struct {",
+      "\t\tname string",
+      "\t\t$2",
+      "\t}{",
+      "\t\t{$0},",
+      "\t}",
+      "",
+      "\tfor _, tt := range tests {",
+      "\t\tt.Run(tt.name, func(t *testing.T) {",
+      "\t\t\t",
+      "\t\t})",
+      "\t}",
+      "}"
+    ]
+  }
+}
