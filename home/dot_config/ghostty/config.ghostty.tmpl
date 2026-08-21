@@ -1,19 +1,22 @@
 font-family = JetBrainsMono Nerd Font
 font-size = {{ if eq .chezmoi.os "darwin" }}17{{ else }}13{{ end }}
 font-feature = -calt
-
 theme = Nord Wave
 
 window-width = 120
 window-height = 30
 window-padding-x = 8
 window-padding-y = 6
+window-padding-color = extend
+
+{{ if eq .chezmoi.os "darwin" -}}
+background-opacity = 0.85
+background-blur = 20
+{{ end -}}
 
 scrollback-limit = 20000000
 copy-on-select = clipboard
 mouse-hide-while-typing = true
-
 unfocused-split-opacity = 0.7
 
 keybind = shift+enter=text:\x1b\r
-
