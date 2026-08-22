@@ -37,12 +37,3 @@ vim.keymap.set("n", "<leader>tt", function()
 end)
 vim.keymap.set("n", "<leader>tv", ":vsplit | terminal<CR>i")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
-
--- override netrw <C-l> <C-h>
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "netrw",
-	callback = function()
-		vim.keymap.set("n", "<C-l>", "<C-w>l", { buffer = true, remap = false })
-		vim.keymap.set("n", "<C-h>", "<C-w>h", { buffer = true, remap = false })
-	end,
-})

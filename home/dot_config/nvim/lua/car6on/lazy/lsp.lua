@@ -3,7 +3,7 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = { "saghen/blink.cmp" },
 		config = function()
-			local servers = { "gopls", "clangd", "lua_ls", "ts_ls", "pyright" }
+			local servers = { "gopls", "clangd", "lua_ls", "ts_ls", "pyright", "postgres_lsp" }
 
 			for _, server in ipairs(servers) do
 				vim.lsp.enable(server)
@@ -11,6 +11,10 @@ return {
 
 			vim.diagnostic.config({
 				virtual_text = true,
+				signs = true,
+				underline = true,
+				update_in_insert = false,
+				severity_sort = true,
 				float = { border = "rounded" },
 			})
 
