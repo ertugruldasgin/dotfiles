@@ -3,7 +3,7 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = { "saghen/blink.cmp" },
 		config = function()
-			local servers = { "gopls", "clangd", "lua_ls", "ts_ls", "pyright", "postgres_lsp" }
+			local servers = { "gopls", "clangd", "lua_ls", "ts_ls", "pyright", "postgres_lsp", "dockerls" }
 
 			for _, server in ipairs(servers) do
 				vim.lsp.enable(server)
