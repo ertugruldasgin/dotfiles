@@ -3,32 +3,22 @@ set -euo pipefail
 
 mkdir -p ~/.local/share/vim/undo ~/.local/share/vim/swap ~/.local/share/zsh
 
+if command -v brew >/dev/null; then
+    brew bundle --file=- <<'BREWEOF'
+{{ include "packages/Brewfile" }}
+BREWEOF
+    exit 0
+fi
+
 command -v dnf >/dev/null || exit 0
 
 if ! sudo -n true 2>/dev/null; then
     echo "skipping package install, run 'sudo -v' and apply again" >&2
-    exit 1
+    exit 0
 fi
 
 packages=$(cat <<'PKGEOF' | grep -vE '^\s*(#|$)'
 {{ include "packages/dnf.txt" }}
 PKGEOF
 )
-
 sudo dnf install -y --skip-unavailable $packages
-
-if ! command -v starship >/dev/null; then
-    curl -sS https://starship.rs/install.sh | sh -s -- -y
-fi
-
-FONT_DIR="$HOME/.local/share/fonts/JetBrainsMono"
-if [ ! -d "$FONT_DIR" ]; then
-    command -v unzip >/dev/null || sudo dnf install -y unzip
-    mkdir -p "$FONT_DIR"
-    curl -fLo /tmp/jbm.zip \
-      https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
-    unzip -oq /tmp/jbm.zip -d "$FONT_DIR"
-    rm -f /tmp/jbm.zip
-    fc-cache -f "$FONT_DIR"
-fi
-

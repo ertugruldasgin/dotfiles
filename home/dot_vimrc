@@ -3,7 +3,7 @@ syntax on
 filetype plugin indent on
 
 set background=dark
-" set termguicolors  " KAPALI — terminalin Nord paletini kullansın
+"set termguicolors" disabled, let the terminal's nord palette through
 
 set number
 set relativenumber

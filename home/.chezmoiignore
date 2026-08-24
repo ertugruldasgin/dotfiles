@@ -1,3 +1,6 @@
 README.md
 packages
-
+{{ if eq .chezmoi.hostname "sar6on" }}
+.config/ghostty
+.local/share/easyeffects
+{{ end }}

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+{{ if or (eq .chezmoi.hostname "sar6on") (eq .chezmoi.os "darwin") }}
+exit 0
+{{ end }}
+
+FONT_DIR="$HOME/.local/share/fonts/JetBrainsMono"
+if [ ! -d "$FONT_DIR" ] && command -v unzip >/dev/null; then
+    mkdir -p "$FONT_DIR"
+    curl -fLo /tmp/jbm.zip \
+      https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+    unzip -oq /tmp/jbm.zip -d "$FONT_DIR"
+    rm -f /tmp/jbm.zip
+    fc-cache -f "$FONT_DIR"
+fi
+
+if ! command -v starship >/dev/null; then
+    mkdir -p "$HOME/.local/bin"
+    curl -sS https://starship.rs/install.sh | sh -s -- -y -b "$HOME/.local/bin"
+fi
