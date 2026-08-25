@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-{{ if or (eq .chezmoi.hostname "sar6on") (eq .chezmoi.os "darwin") }}
-exit 0
-{{ end }}
 
+{{ if not (or (eq .chezmoi.hostname "sar6on") (eq .chezmoi.os "darwin")) }}
 FONT_DIR="$HOME/.local/share/fonts/JetBrainsMono"
 if [ ! -d "$FONT_DIR" ] && command -v unzip >/dev/null; then
     mkdir -p "$FONT_DIR"
@@ -13,8 +11,15 @@ if [ ! -d "$FONT_DIR" ] && command -v unzip >/dev/null; then
     rm -f /tmp/jbm.zip
     fc-cache -f "$FONT_DIR"
 fi
+{{ end }}
 
+{{ if ne .chezmoi.os "darwin" }}
 if ! command -v starship >/dev/null; then
     mkdir -p "$HOME/.local/bin"
     curl -sS https://starship.rs/install.sh | sh -s -- -y -b "$HOME/.local/bin"
 fi
+{{ end }}
+
+{{ if ne .chezmoi.hostname "sar6on" }}
+command -v c_formatter_42 >/dev/null || pip install --user --quiet c-formatter-42
+{{ end }}

@@ -3,13 +3,19 @@ return {
 		"stevearc/conform.nvim",
 		config = function()
 			local conform = require("conform")
-
 			conform.setup({
+				formatters = {
+					c_formatter_42 = {
+						command = "c_formatter_42",
+						stdin = true,
+					},
+				},
 				formatters_by_ft = {
 					lua = { "stylua" },
 					go = { "goimports", "gofmt" },
-					c = { "clang-format" },
-					cpp = { "clang-format" },
+					-- c = { "clang-format" },
+					c = { "c_formatter_42" },
+					-- cpp = { "clang-format" },
 					zig = { "zigfmt" },
 					python = { "ruff_format" },
 					javascript = { "prettier" },
@@ -28,7 +34,6 @@ return {
 					lsp_format = "fallback",
 				},
 			})
-
 			vim.keymap.set({ "n", "v" }, "<leader>fm", function()
 				conform.format({ async = true })
 			end)
