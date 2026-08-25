@@ -114,3 +114,17 @@ unset ZSH_PLUGIN_DIR
 
 command -v zoxide   >/dev/null && eval "$(zoxide init zsh --cmd cd)"
 command -v starship >/dev/null && eval "$(starship init zsh)"
+
+for f in \
+    /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+    "$HOME/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+do
+    [ -f "$f" ] && source "$f" && break
+done
+
+for f in \
+    /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+    "$HOME/.local/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+do
+    [ -f "$f" ] && source "$f" && break
+done

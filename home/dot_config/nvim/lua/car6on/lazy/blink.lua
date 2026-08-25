@@ -2,7 +2,13 @@ return {
 	{
 		"saghen/blink.cmp",
 		version = "*",
-		dependencies = { "rafamadriz/friendly-snippets" },
+		build = function()
+			require("blink.cmp").build():pwait()
+		end,
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"saghen/blink.lib",
+		},
 		opts = {
 			keymap = {
 				preset = "super-tab",
