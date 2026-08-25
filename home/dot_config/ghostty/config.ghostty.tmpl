@@ -3,11 +3,6 @@ font-size = {{ if eq .chezmoi.os "darwin" }}17{{ else }}13{{ end }}
 font-feature = -calt
 theme = Nord Wave
 
-{{ if eq .chezmoi.osRelease.id "ubuntu" }}
-font-size = 13
-window-width = 800
-window-height = 200
-{{ end }}
 
 window-width = 120
 window-height = 30
@@ -28,3 +23,7 @@ mouse-hide-while-typing = true
 unfocused-split-opacity = 0.7
 
 keybind = shift+enter=text:\x1b\r
+
+background-opacity = 0.95
+background-blur = 20
+
