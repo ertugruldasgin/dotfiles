@@ -14,6 +14,6 @@ for pkg in \
     golang.org/x/tools/cmd/goimports@latest
 do
     echo "installing ${pkg%@*}"
-    go install "$pkg"
+    go install "$pkg" || echo "failed: $pkg" >&2
 done
 
