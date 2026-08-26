@@ -46,3 +46,4 @@ alias ghb='gh browse'
 
 # 42 aliases
 gty() { setsid ghostty >/dev/null 2>&1 </dev/null & disown; }
+alias minim='~/mini-moulinette/mini-moul.sh'
