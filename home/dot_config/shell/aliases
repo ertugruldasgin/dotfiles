@@ -44,6 +44,12 @@ alias prl='gh pr list -s all'
 alias prme='prl --author @me'
 alias ghb='gh browse'
 
+<<<<<<< Updated upstream
 # 42 aliases
 gty() { setsid ghostty >/dev/null 2>&1 </dev/null & disown; }
 alias minim='~/mini-moulinette/mini-moul.sh'
+||||||| Stash base
+=======
+# 42
+#
+>>>>>>> Stashed changes
