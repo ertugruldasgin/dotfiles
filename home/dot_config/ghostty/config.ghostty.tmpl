@@ -3,27 +3,25 @@ font-size = {{ if eq .chezmoi.os "darwin" }}17{{ else }}13{{ end }}
 font-feature = -calt
 theme = Nord Wave
 
+{{ if eq .chezmoi.os "darwin" -}}
+window-decoration = auto
+macos-titlebar-style = hidden
+macos-titlebar-style = tabs
+background-opacity = 0.85
+background-blur = 20
+{{ else -}}
+window-decoration = none
+background-opacity = 0.95
+{{ end -}}
 
 window-width = 120
 window-height = 30
 window-padding-x = 8
 window-padding-y = 6
 window-padding-color = extend
-window-decoration = none  
 window-show-tab-bar = auto
-
-{{ if eq .chezmoi.os "darwin" -}}
-background-opacity = 0.85
-background-blur = 20
-{{ end -}}
-
 scrollback-limit = 20000000
 copy-on-select = clipboard
 mouse-hide-while-typing = true
 unfocused-split-opacity = 0.7
-
 keybind = shift+enter=text:\x1b\r
-
-background-opacity = 0.95
-background-blur = 20
-
