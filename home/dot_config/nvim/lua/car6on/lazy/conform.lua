@@ -16,6 +16,7 @@ return {
 					-- c = { "clang-format" },
 					c = { "c_formatter_42" },
 					-- cpp = { "clang-format" },
+                    cpp = { "c_formatter_42" },
 					zig = { "zigfmt" },
 					python = { "ruff_format" },
 					javascript = { "prettier" },
