@@ -31,6 +31,7 @@ return {
 					},
 				},
 				git = { enable = true },
+				filters = { git_ignored = false },
 				diagnostics = { enable = true, show_on_dirs = true },
 				actions = { open_file = { quit_on_open = false } },
 			})
