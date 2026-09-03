@@ -46,9 +46,16 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "make",
+	callback = function()
+		vim.opt_local.expandtab = false
+	end,
+})
+
 -- only for 42
 vim.filetype.add({
-    extension = {
-        h = "c",
-    },
+	extension = {
+		h = "c",
+	},
 })
