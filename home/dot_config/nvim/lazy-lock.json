@@ -1,4 +1,5 @@
 {
+  "42header": { "branch": "master", "commit": "8ccddfe98127e2f90b7ddf91512224f554fd79b2" },
   "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
   "blink.lib": { "branch": "main", "commit": "c8fdc12c8a2fab6cf786dd7141a283f8079f902b" },
   "conform.nvim": { "branch": "master", "commit": "016802de402556da54c36bd7359b441266b01cdd" },
