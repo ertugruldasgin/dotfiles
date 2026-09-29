@@ -30,6 +30,15 @@ alias dx='docker exec -i -t'
 alias db='docker build -t'
 alias dc='docker compose'
 
+# terraform
+alias tf=terraform
+alias tfi='terraform init'
+alias tfp='terraform plan'
+alias tfa='terraform apply'
+alias tfd='terraform destroy'
+alias tfv='terraform validate'
+alias tfm='terraform fmt -recursive'
+
 # git and github
 alias g='git'
 alias gd='git diff'
