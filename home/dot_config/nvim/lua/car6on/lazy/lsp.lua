@@ -22,6 +22,7 @@ return {
 				"postgres_lsp",
 				"dockerls",
 				"yamlls",
+                "terraformls",
 			}
 			for _, server in ipairs(servers) do
 				vim.lsp.enable(server)
