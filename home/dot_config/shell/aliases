@@ -25,7 +25,7 @@ alias fpu='flatpak update'
 alias d=docker
 alias dr='docker run --rm -i -t'
 alias drb='docker run --rm -i -t --entrypoint sh'
-alias drr='docker run --rm -i -t -p 8080:8080 -e PORT:8080'
+alias drr='docker run --rm -i -t -p 8080:8080 -e PORT=8080'
 alias dx='docker exec -i -t'
 alias db='docker build -t'
 alias dc='docker compose'
@@ -56,3 +56,6 @@ alias ghb='gh browse'
 # 42 aliases
 gty() { setsid ghostty >/dev/null 2>&1 </dev/null & disown; }
 alias minim='~/mini-moulinette/mini-moul.sh'
+
+# misc
+alias stg='starship toggle'

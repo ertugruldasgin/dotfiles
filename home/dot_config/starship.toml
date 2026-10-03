@@ -2,6 +2,7 @@
 
 [aws]
 symbol = " "
+disabled = false
 
 [azure]
 symbol = " "
