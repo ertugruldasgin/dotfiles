@@ -1,8 +1,9 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 [aws]
-symbol = " "
+symbol = "  "
 disabled = false
+format = '[$symbol($profile )(\($region\) )]($style)'
 
 [azure]
 symbol = " "
@@ -292,6 +293,7 @@ symbol = " "
 
 [terraform]
 symbol = " "
+disabled = false
 
 [vlang]
 symbol = " "

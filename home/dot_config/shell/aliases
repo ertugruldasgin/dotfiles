@@ -53,6 +53,26 @@ alias prl='gh pr list -s all'
 alias prme='prl --author @me'
 alias ghb='gh browse'
 
+# aws profile
+awsp() {
+    if [ -z "$1" ]; then
+        echo "${AWS_PROFILE:-default}"
+        return
+    fi
+    export AWS_PROFILE="$1"
+    aws sts get-caller-identity --query Account --output text 2>/dev/null
+}
+
+awsf() {
+    local p
+    p=$(aws configure list-profiles | fzf --prompt="aws profile> ") || return
+    export AWS_PROFILE="$p"
+    export AWS_REGION="$(aws configure get region)"
+    aws sts get-caller-identity --query Account --output text
+}
+
+alias awsls='aws configure list-profiles'
+
 # 42 aliases
 gty() { setsid ghostty >/dev/null 2>&1 </dev/null & disown; }
 alias minim='~/mini-moulinette/mini-moul.sh'
