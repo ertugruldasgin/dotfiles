@@ -53,6 +53,11 @@ alias prl='gh pr list -s all'
 alias prme='prl --author @me'
 alias ghb='gh browse'
 
+# aws
+alias awsw='aws sts get-caller-identity'
+alias awsx='unset AWS_PROFILE AWS_REGION AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN'
+alias s3ls='aws s3 ls'
+
 # aws profile
 awsp() {
     if [ -z "$1" ]; then
