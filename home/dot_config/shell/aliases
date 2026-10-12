@@ -38,6 +38,8 @@ alias tfa='terraform apply'
 alias tfd='terraform destroy'
 alias tfv='terraform validate'
 alias tfm='terraform fmt -recursive'
+alias tfs='terraform state list'
+alias tfo='terraform output'
 
 # git and github
 alias g='git'
