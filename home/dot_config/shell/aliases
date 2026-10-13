@@ -12,6 +12,13 @@ alias -g V='| vim -R -c "set buftype=nofile bufhidden=wipe noswapfile" -c "nnore
 alias -g F='| fzf --preview "bat -n --color=always {} 2>/dev/null || eza -1 --color=always {}"'
 alias -g L='| less'
 
+# editor
+alias v='nvim'
+
+# shell
+alias reload='exec zsh'
+mkcd() { mkdir -p "$1" && cd "$1"; }
+
 # package management
 alias dnfi='sudo dnf install'
 alias dnfs='dnf search'
