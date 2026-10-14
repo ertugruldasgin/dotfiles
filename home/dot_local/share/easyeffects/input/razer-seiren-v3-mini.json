@@ -1,0 +1,62 @@
+{
+  "input": {
+    "blocklist": [],
+    "plugins_order": ["gate#0", "compressor#0", "equalizer#0", "limiter#0"],
+    "gate#0": {
+      "bypass": false,
+      "input-gain": 0.0,
+      "output-gain": 0.0,
+      "attack": 5.0,
+      "release": 50.0,
+      "threshold": -50.0,
+      "ratio": 2.0,
+      "knee": 9.0
+    },
+    "compressor#0": {
+      "bypass": false,
+      "input-gain": 0.0,
+      "output-gain": 2.0,
+      "attack": 10.0,
+      "release": 100.0,
+      "threshold": -20.0,
+      "ratio": 3.0,
+      "knee": 6.0,
+      "mode": "Downward",
+      "sidechain": {
+        "type": "Feed-forward"
+      }
+    },
+    "equalizer#0": {
+      "bypass": false,
+      "input-gain": 0.0,
+      "output-gain": 0.0,
+      "num-bands": 3,
+      "band0": {
+        "type": "Hi-pass",
+        "frequency": 80.0,
+        "gain": 0.0,
+        "q": 0.7
+      },
+      "band1": {
+        "type": "Bell",
+        "frequency": 3000.0,
+        "gain": 2.0,
+        "q": 1.0
+      },
+      "band2": {
+        "type": "Bell",
+        "frequency": 200.0,
+        "gain": -2.0,
+        "q": 0.8
+      }
+    },
+    "limiter#0": {
+      "bypass": false,
+      "input-gain": 0.0,
+      "output-gain": 0.0,
+      "threshold": -1.0,
+      "attack": 5.0,
+      "release": 20.0
+    }
+  }
+}
