@@ -97,3 +97,5 @@ alias minim='~/mini-moulinette/mini-moul.sh'
 
 # misc
 alias stg='starship toggle'
+alias -s {md,txt,go,c,h,py,yaml,yml,json,toml}=nvim
+
