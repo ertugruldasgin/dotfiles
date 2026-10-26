@@ -95,6 +95,12 @@ alias awsls='aws configure list-profiles'
 gty() { setsid ghostty >/dev/null 2>&1 </dev/null & disown; }
 alias minim='~/mini-moulinette/mini-moul.sh'
 
+# chezmoi
+alias cz='chezmoi'
+alias czd='chezmoi cd'
+alias cza='chezmoi apply -v'
+alias czs='chezmoi status'
+
 # misc
 alias stg='starship toggle'
 alias -s {md,txt,go,c,h,py,yaml,yml,json,toml}=nvim
