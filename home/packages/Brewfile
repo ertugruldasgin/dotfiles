@@ -31,6 +31,7 @@ brew "go"
 brew "cmake"
 brew "make"
 brew "gcc"
+brew "protobuf"
 
 cask "ghostty"
 cask "visual-studio-code"

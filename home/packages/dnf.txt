@@ -21,6 +21,7 @@ gh
 # build & language
 golang
 pkgconf
+protobuf-compiler
 
 gcc
 gcc-c++

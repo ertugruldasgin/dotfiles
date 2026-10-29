@@ -11,7 +11,10 @@ for pkg in \
     golang.org/x/tools/gopls@latest \
     github.com/go-delve/delve/cmd/dlv@latest \
     github.com/air-verse/air@latest \
-    golang.org/x/tools/cmd/goimports@latest
+    golang.org/x/tools/cmd/goimports@latest \
+    google.golang.org/protobuf/cmd/protoc-gen-go@latest \
+    google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest \
+    github.com/bufbuild/buf/cmd/buf@latest
 do
     echo "installing ${pkg%@*}"
     go install "$pkg" || echo "failed: $pkg" >&2
