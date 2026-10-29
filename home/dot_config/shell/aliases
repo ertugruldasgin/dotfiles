@@ -15,6 +15,7 @@ alias cl='clear'
 alias -g V='| nvim -R -c "set bt=nofile bh=wipe noswf" -c "nnoremap q :qa!<CR>" -'
 alias -g F='| fzf --preview "bat -n --color=always {} 2>/dev/null || eza -1 --color=always {}"'
 alias -g L='| less'
+alias tm='tmux new -As'
 
 # editor
 alias v='nvim'
