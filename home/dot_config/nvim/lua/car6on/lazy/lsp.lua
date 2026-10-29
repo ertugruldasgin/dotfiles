@@ -15,17 +15,18 @@ return {
 
 			local servers = {
 				"gopls",
+				"buf_ls",
 				"clangd",
 				"lua_ls",
 				"ts_ls",
-                "cssls",
-                "html",
-                "jsonls",
+				"cssls",
+				"html",
+				"jsonls",
 				"pyright",
 				"postgres_lsp",
 				"dockerls",
 				"yamlls",
-                "terraformls",
+				"terraformls",
 			}
 			for _, server in ipairs(servers) do
 				vim.lsp.enable(server)
