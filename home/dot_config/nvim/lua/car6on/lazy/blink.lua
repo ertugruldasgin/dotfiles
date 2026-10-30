@@ -17,7 +17,11 @@ return {
 				nerd_font_variant = "mono",
 			},
 			completion = {
-				documentation = { auto_show = true, auto_show_delay_ms = 200 },
+				documentation = {
+					auto_show = true,
+					auto_show_delay_ms = 200,
+					window = { max_width = 80, max_height = 20 },
+				},
 				ghost_text = { enabled = true },
 			},
 			snippets = {

@@ -13,6 +13,17 @@ return {
 				},
 			})
 
+			vim.lsp.config("gopls", {
+				settings = {
+					gopls = {
+						hoverKind = "FullDocumentation",
+						usePlaceholders = true,
+						completeUnimported = true,
+						linksInHover = false,
+					},
+				},
+			})
+
 			local servers = {
 				"gopls",
 				"buf_ls",
