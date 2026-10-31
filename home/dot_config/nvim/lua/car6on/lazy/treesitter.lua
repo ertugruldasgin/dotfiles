@@ -29,8 +29,10 @@ return {
 				"make",
 				"markdown",
 				"markdown_inline",
-                "terraform",
-                "hcl",
+				"terraform",
+				"hcl",
+				"latex",
+				"bibtex",
 			})
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function()

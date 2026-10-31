@@ -38,6 +38,7 @@ return {
 				"dockerls",
 				"yamlls",
 				"terraformls",
+				"texlab",
 			}
 			for _, server in ipairs(servers) do
 				vim.lsp.enable(server)
