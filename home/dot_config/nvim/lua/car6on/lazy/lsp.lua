@@ -32,6 +32,7 @@ return {
 				-- "ts_ls",
 				"tsc",
 				"cssls",
+				"tailwindcss",
 				"html",
 				"jsonls",
 				"pyright",
