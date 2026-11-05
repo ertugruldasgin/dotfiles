@@ -14,7 +14,8 @@ for pkg in \
     golang.org/x/tools/cmd/goimports@latest \
     google.golang.org/protobuf/cmd/protoc-gen-go@latest \
     google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest \
-    github.com/bufbuild/buf/cmd/buf@latest
+    github.com/bufbuild/buf/cmd/buf@latest \
+    github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
 do
     echo "installing ${pkg%@*}"
     go install "$pkg" || echo "failed: $pkg" >&2
