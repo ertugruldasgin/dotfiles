@@ -86,13 +86,7 @@ command -v bat >/dev/null && {
 
 command -v fdfind >/dev/null && ! command -v fd >/dev/null && alias fd='fdfind'
 
-command -v fzf >/dev/null && {
-  source <(fzf --zsh)
-  export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-  export FZF_CTRL_T_OPTS='--preview "bat -n --color=always {} 2>/dev/null"'
-}
+command -v fzf >/dev/null && source <(fzf --zsh)
 
 [ -f ~/.local/share/zsh/fzf-tab/fzf-tab.plugin.zsh ] && {
   source ~/.local/share/zsh/fzf-tab/fzf-tab.plugin.zsh
@@ -101,30 +95,20 @@ command -v fzf >/dev/null && {
   zstyle ':fzf-tab:*' switch-group ',' '.'
 }
 
+command -v zoxide   >/dev/null && eval "$(zoxide init zsh --cmd cd)"
+command -v starship >/dev/null && eval "$(starship init zsh)"
+
 {{ if eq .chezmoi.os "darwin" -}}
 ZSH_PLUGIN_DIR="$(brew --prefix 2>/dev/null)/share"
 {{ else -}}
 ZSH_PLUGIN_DIR=/usr/share
 {{ end -}}
-[ -f "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && \
-  . "$ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
-[ -f "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
-  . "$ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-unset ZSH_PLUGIN_DIR
-
-command -v zoxide   >/dev/null && eval "$(zoxide init zsh --cmd cd)"
-command -v starship >/dev/null && eval "$(starship init zsh)"
-
-for f in \
-    /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
-    "$HOME/.local/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-do
-    [ -f "$f" ] && source "$f" && break
+for d in "$ZSH_PLUGIN_DIR" "$HOME/.local/share/zsh"; do
+  [ -f "$d/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && \
+    . "$d/zsh-autosuggestions/zsh-autosuggestions.zsh" && break
 done
-
-for f in \
-    /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
-    "$HOME/.local/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-do
-    [ -f "$f" ] && source "$f" && break
+for d in "$ZSH_PLUGIN_DIR" "$HOME/.local/share/zsh"; do
+  [ -f "$d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && \
+    . "$d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" && break
 done
+unset ZSH_PLUGIN_DIR d
