@@ -30,6 +30,11 @@ symbol = " "
 [cmake]
 symbol = " "
 
+[cmd_duration]
+min_time = 2000
+format = "[$duration]($style) "
+style = "#4c566a"
+
 [cobol]
 symbol = " "
 
