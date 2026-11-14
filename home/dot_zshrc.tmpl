@@ -46,6 +46,10 @@ autoload -Uz compinit && compinit -d "$ZSH_CACHE_DIR/zcompdump"
 autoload -Uz zmv
 alias mmv='noglob zmv -W'
 
+unalias run-help 2>/dev/null
+autoload -Uz run-help
+bindkey '\eh' run-help
+
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' group-name ''
