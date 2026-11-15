@@ -43,12 +43,6 @@ ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 mkdir -p "$ZSH_CACHE_DIR"
 
 autoload -Uz compinit && compinit -d "$ZSH_CACHE_DIR/zcompdump"
-autoload -Uz zmv
-alias mmv='noglob zmv -W'
-
-unalias run-help 2>/dev/null
-autoload -Uz run-help
-bindkey '\eh' run-help
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -97,9 +91,54 @@ rationalise-dot() {
 zle -N rationalise-dot
 bindkey . rationalise-dot
 
+unalias run-help 2>/dev/null
+autoload -Uz run-help
+bindkey '\eh' run-help
+
+autoload -Uz zmv
+alias mmv='noglob zmv -W'
+
 autoload -Uz url-quote-magic bracketed-paste-magic
 zle -N self-insert url-quote-magic
 zle -N bracketed-paste bracketed-paste-magic
+
+zmodload zsh/datetime
+autoload -Uz add-zsh-hook
+
+NOTIFY_MIN=30
+NOTIFY_IGNORE=(nvim vim ssh tmux lazygit less man htop top fg)
+
+_notify() {
+  local seq=$'\e]777;notify;'"$1;$2"$'\a'
+  if [[ -n $TMUX ]]; then
+    printf '\ePtmux;\e%s\e\\' "$seq"
+  else
+    printf '%s' "$seq"
+  fi
+}
+_cmd_start() {
+  _cmd_ts=$EPOCHSECONDS
+  _cmd_name=${1%% *}
+  _cmd_line=${1//;/,}
+}
+_cmd_notify() {
+  local st=$?
+  (( _cmd_ts )) || return
+  local d=$(( EPOCHSECONDS - _cmd_ts )); _cmd_ts=0
+  (( d >= NOTIFY_MIN )) || return
+  (( ${NOTIFY_IGNORE[(Ie)$_cmd_name]} )) && return
+
+  local t title
+  (( d >= 60 )) && t="$((d / 60))m $((d % 60))s" || t="${d}s"
+  if (( st == 0 )); then
+    title="✓ ${_cmd_line[1,50]}"
+  else
+    title="✗ ${_cmd_line[1,50]} (exit $st)"
+  fi
+  _notify "$title" "$t - ${PWD:t}"
+}
+add-zsh-hook preexec _cmd_start
+add-zsh-hook precmd  _cmd_notify
 
 command -v eza >/dev/null && {
   alias ls='eza --group-directories-first'
